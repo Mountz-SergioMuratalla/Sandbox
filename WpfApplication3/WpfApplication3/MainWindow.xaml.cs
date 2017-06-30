@@ -29,15 +29,20 @@ namespace WpfApplication3
 
 
 
-        PinBaoCard 
-
 
 
 
 
         public MainWindow()
         {
+            DeltaMotor M2 = new DeltaMotor();
+            M2.Card.Set8255();
+            M2.Card.Set8253();
             InitializeComponent();
+            M2.Card.checkAddresses();
+
+
+
         }
 
 
@@ -49,20 +54,18 @@ namespace WpfApplication3
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            int DATA;
-            int pciad_addr = -7936;
-            DATA = 2600;
 
-            byte i = DecInpb(P1A);         //   'saves whatever is already in the port
-            int k1 = DecOutLong(P1A, (i & ZERO_SPEED));
-            int b = (i & ZERO_SPEED);
-            System.Windows.MessageBox.Show(b.ToString());
+            //int DATA;
+            //int pciad_addr = -7936;
+            //DATA = 2600;
 
-          
-            
+            //byte i = DecInpb(P1A);         //   'saves whatever is already in the port
+            //int k1 = DecOutLong(P1A, (i & ZERO_SPEED));
+            ////int b = (i & ZERO_SPEED);
+            //System.Windows.MessageBox.Show(b.ToString());
                        
-            int k2= DecOutLong(pciad_addr + 4, DATA);
-            this.StatusTextBox.Text = k1.ToString() + " " + k2.ToString()+ " "+(pciad_addr+4).ToString()+ " " + DATA.ToString();
+            //int k2= DecOutLong(pciad_addr + 4, DATA);
+            //this.StatusTextBox.Text = k1.ToString() + " " + k2.ToString()+ " "+(pciad_addr+4).ToString()+ " " + DATA.ToString();
 
         }
     }

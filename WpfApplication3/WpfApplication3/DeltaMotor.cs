@@ -8,10 +8,15 @@ namespace WpfApplication3
 {
     class DeltaMotor
     {
+       public PinBaoCard Card = new PinBaoCard();
 
+        public void Stop() {
+            Card.Stop();
+            return;
+        }
 
-        int pciad_addr = -7936;
-        int DATA = 2600;
+       // int pciad_addr = -7936;
+        //int DATA = 2600;
                        
     }
 }

@@ -49,8 +49,6 @@ namespace WpfApplication3
         private byte i;
         private int j, k;
 
-
-
         private const int DECISION_PCI_IND_CARD = 1;
         private const int DECISION_PCI_8255_CARD = 2;
         private const int DECISION_PCI_4P4R_CARD = 3;
@@ -60,17 +58,23 @@ namespace WpfApplication3
         private const int DECISION_PCI_M8255_CARD = 7;
         private const int DECISION_PCI_12ADDA_CARD = 8;
         private const int DECISION_PCI_14ADDA_CARD = 9;
-
-
-        /// End of declib + io function definitions
+           /// End of declib + io function definitions
         /// /////////////////////////////////////////////////////////////
 
-
         private static int ad_addr = 4096;
+        private static int ad_bits = 12;
         private static int io_addr = 57344;
+        private static int io_addr_Alt = 57344;
+        private static int pciad_addr;//alternative
         private static int m = GetDevicePortAddress(DECISION_PCI_8255_CARD, ref io_addr);
+        private static int m2 = GetDevicePortAddress(DECISION_PCI_12ADDA_CARD, ref pciad_addr);
         private static int ad13bit = 2048;   //'bin 0100000000000        this number starts at digit 12      MURA
         private static int ad14bit = 4095;  // 'bin 0111111111111                                            MURA
+
+        public void checkAddresses() {
+            System.Windows.MessageBox.Show("ad_addr: " + ad_addr + "\n" + "io_addr: " + ad_addr + "  and should should be 57344 \n" + "pciad_addr: " + pciad_addr + "\n" + );
+        }
+
 
         //'''io port addresses tag asignation
         private static int P1A = io_addr + 0;
@@ -96,12 +100,12 @@ namespace WpfApplication3
         //public static int k1 = DecOutb(P2CTRL, 0x9B);
         //public static int k2 = DecOutb(P1A, 0xFF);
         //public static int k3 = DecOutb(P1A, 0x0);
-
         public void Set8255() {
             k = DecOutb(P1CTRL, 0x8B);
             k = DecOutb(P2CTRL, 0x9B);
             k = DecOutb(P1A, 0xFF);
             k = DecOutb(P1A, 0x0);
+            return;
         }
 
         // set 8253
@@ -112,7 +116,6 @@ namespace WpfApplication3
         //private static int k7 = DecOutb(CNT0, i), k8 = DecOutb(CNT0, j);
         //private static byte i1 = DecInpb(CNT1), j1 = DecInpb(CNT1);
         //private static int k9 = DecOutb(CNT1, i1), k10 = DecOutb(CNT1, j1);
-
         public void Set8253(){
             k = DecOutb(CNT_CTRL, 0x30);
             k = DecOutb(CNT_CTRL, 0x70);
@@ -125,19 +128,17 @@ namespace WpfApplication3
             j = DecInpb(CNT1);
             k = DecOutb(CNT1, i);
             k = DecOutb(CNT1, j);
-
+            return;
         }
 
 
         //stop lamp
-
         //private static byte i3 = DecInpb(P1A);
         //private static int k11 = DecOutb(P1A, (byte)(i3 | STOP_SPEED));//'STOP_SPEED=&H8
-
-        //stop lamp
-           public void StopLamp() {
+        public void Stop() {
             i= DecInpb(P1A);
             DecOutb(P1A, (byte)(i| STOP_SPEED));//'STOP_SPEED=&H8
+            return;
         }
 
 
@@ -149,11 +150,8 @@ namespace WpfApplication3
 
         public int getIO_addr()
         {
-            return m;
+            return io_addr;
         }
-
-test3
-
 
     }
 }
