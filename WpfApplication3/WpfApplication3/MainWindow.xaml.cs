@@ -35,10 +35,14 @@ namespace WpfApplication3
 
         public MainWindow()
         {
+            InitializeComponent();
+
             DeltaMotor M2 = new DeltaMotor();
             M2.Card.Set8255();
             M2.Card.Set8253();
-            InitializeComponent();
+
+            M2.Stop();
+
             M2.Card.checkAddresses();
 
 
