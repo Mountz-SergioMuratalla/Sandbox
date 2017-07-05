@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace WpfApplication3
+namespace Trois
 {
     /// <summary>
     /// Interaction logic for App.xaml

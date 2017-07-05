@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 using System.Runtime.InteropServices;
 
-namespace WpfApplication3
+namespace Trois
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

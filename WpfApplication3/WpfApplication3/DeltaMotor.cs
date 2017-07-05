@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 
-namespace WpfApplication3
+namespace Trois
 {
     internal class DeltaMotor
     {
