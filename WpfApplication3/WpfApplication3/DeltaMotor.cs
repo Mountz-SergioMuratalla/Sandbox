@@ -10,26 +10,6 @@ namespace WpfApplication3
     internal class DeltaMotor
     {
         public PinBaoCard Card = new PinBaoCard();//creates an instance of the card to comunicate with
-<<<<<<< HEAD
-=======
-
-
-        private int cnt0_back, cnt1_back, cnt0_now, cnt1_now, count0, count1-0; //variables for angle counting
-        private double origin, COUNTER, an, ab, angle360 = 0;
-        private double votage_cal = 1;    //direction? -1 for small machines, 1 for bigger MTTMs
-        private double test_speed = 0.5;  //main speed
-        private double ad13bit = 2048;   //bin 0100000000000        this number starts at digit 12      MURA
-        private double ad14bit = 4095;   //bin 0111111111111                                            MURA
-        private double motor_speed_max = 3000;        //CHECKIFUSED
-       private double slower = 630.8;   //factor used to calculate the actual signal to be sent for the speed   CHECKIFUSED
-        private double originsum = 0;
-        private double preset_origin = 0;
-        private double encoder = 6308;
-        private double pitch = 3.6;
-        private double M1RPMBaseSpeed = 0.2;
-        //private double angle360 = 161.71
-        private int MTTMDirection = 1;   // CHeCKIFUSED
->>>>>>> 7d2dda1... almost end of the week, almost finished first test with classes
 
 
         private int cnt0_back, cnt1_back, cnt0_now, cnt1_now, count0, count1; //variables for angle counting
@@ -54,12 +34,8 @@ namespace WpfApplication3
             return;
         }
 
-<<<<<<< HEAD
         public void Move(double RPMspeed)
         {
-=======
-        public void Move(double RPMspeed) {
->>>>>>> 7d2dda1... almost end of the week, almost finished first test with classes
             Card.ActivateMotor();
             double rawSpeed = ad13bit + ((RPMspeed * ad13bit * votage_cal) / (motor_speed_max / 630.8));
             Card.MoveCommand((int)rawSpeed);
@@ -82,7 +58,6 @@ namespace WpfApplication3
             ab = 0;
             angle360 = 0;
         }
-<<<<<<< HEAD
     }
 
     //class AngleControler(){
@@ -91,17 +66,6 @@ namespace WpfApplication3
 
 
     public class PinBaoCard
-=======
-
-    }
-
-    //class AngleControler(){
-        //}
-
-   
-
-        public   class PinBaoCard
->>>>>>> 7d2dda1... almost end of the week, almost finished first test with classes
     {
 
         /// /////////////////////////////////////////////////////////////
@@ -141,13 +105,8 @@ namespace WpfApplication3
         //private static extern char Inp32(short PortAddress);
         /// </summary>
 
-<<<<<<< HEAD
         private byte i,j;
         private int k;
-=======
-        private byte i;
-        private int j, k;
->>>>>>> 7d2dda1... almost end of the week, almost finished first test with classes
 
         private const int DECISION_PCI_IND_CARD = 1;
         private const int DECISION_PCI_8255_CARD = 2;
@@ -171,14 +130,9 @@ namespace WpfApplication3
         private static int ad13bit = 2048;   //'bin 0100000000000        this number starts at digit 12      MURA
         private static int ad14bit = 4095;  // 'bin 0111111111111                                            MURA
 
-<<<<<<< HEAD
         public void CheckAddresses()
         {
             System.Windows.MessageBox.Show("ad_addr: " + ad_addr + "\n" + "io_addr: " + ad_addr + "  and should should be 57344 \n" + "pciad_addr: " + pciad_addr + "\n");
-=======
-        public void CheckAddresses() {
-            System.Windows.MessageBox.Show("ad_addr: " + ad_addr + "\n" + "io_addr: " + ad_addr + "  and should should be 57344 \n" + "pciad_addr: " + pciad_addr + "\n" + );
->>>>>>> 7d2dda1... almost end of the week, almost finished first test with classes
         }
 
 
@@ -208,12 +162,8 @@ namespace WpfApplication3
         //public static int k1 = DecOutb(P2CTRL, 0x9B);
         //public static int k2 = DecOutb(P1A, 0xFF);
         //public static int k3 = DecOutb(P1A, 0x0);
-<<<<<<< HEAD
         public void Set8255()
         {
-=======
-        public void Set8255() {
->>>>>>> 7d2dda1... almost end of the week, almost finished first test with classes
             k = DecOutb(P1CTRL, 0x8B);
             k = DecOutb(P2CTRL, 0x9B);
             k = DecOutb(P1A, 0xFF);
@@ -229,12 +179,8 @@ namespace WpfApplication3
         //private static int k7 = DecOutb(CNT0, i), k8 = DecOutb(CNT0, j);
         //private static byte i1 = DecInpb(CNT1), j1 = DecInpb(CNT1);
         //private static int k9 = DecOutb(CNT1, i1), k10 = DecOutb(CNT1, j1);
-<<<<<<< HEAD
         public void Set8253()
         {
-=======
-        public void Set8253() {
->>>>>>> 7d2dda1... almost end of the week, almost finished first test with classes
             k = DecOutb(CNT_CTRL, 0x30);
             k = DecOutb(CNT_CTRL, 0x70);
             k = DecOutb(CNT_CTRL, 0xB0);
@@ -253,12 +199,8 @@ namespace WpfApplication3
         //stop lamp
         //private static byte i3 = DecInpb(P1A);
         //private static int k11 = DecOutb(P1A, (byte)(i3 | STOP_SPEED));//'STOP_SPEED=&H8
-<<<<<<< HEAD
         public void Stop()
         {
-=======
-        public void Stop() {
->>>>>>> 7d2dda1... almost end of the week, almost finished first test with classes
             i = DecInpb(P1A);
             DecOutb(P1A, (byte)(i | STOP_SPEED));//'STOP_SPEED=&H8
             return;
@@ -278,12 +220,8 @@ namespace WpfApplication3
 
         public int ReadAddress(string a)
         {
-<<<<<<< HEAD
             switch (a)
             {
-=======
-            switch (a) {
->>>>>>> 7d2dda1... almost end of the week, almost finished first test with classes
                 case "CNT0":
                     return DecInpb(CNT0);
 
@@ -291,12 +229,8 @@ namespace WpfApplication3
             }
         }
 
-<<<<<<< HEAD
         public byte Resetcnt0_back()
         {
-=======
-        public byte Resetcnt0_back() {
->>>>>>> 7d2dda1... almost end of the week, almost finished first test with classes
             byte cnt0back;
             k = DecOutb(CNT_CTRL, 0x0); //0000 0000
             cnt0back = DecInpb(CNT0);
@@ -304,10 +238,6 @@ namespace WpfApplication3
             return cnt0back;
         }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 7d2dda1... almost end of the week, almost finished first test with classes
         public byte Resetcnt1_back()
         {
             byte cnt1back;
@@ -319,7 +249,6 @@ namespace WpfApplication3
 
         public void ActivateMotor()
         {
-<<<<<<< HEAD
             i = DecInpb(P1A);
             k = DecOutb(P1A, (byte)(i & ZERO_SPEED));  //  ZERO_SPEED=&HF7=11110111
         }
@@ -334,17 +263,3 @@ namespace WpfApplication3
     }//namespace closing bracket
 
 }//End of namespace
-=======
-             i= DecInpb(P1A);
-             k = DecOutb(P1A, (byte)(i & ZERO_SPEED));  //  ZERO_SPEED=&HF7=11110111
-        }
-
-        public void MoveCommand(int SpeedRawValue)
-        {     
-             if (SpeedRawValue >= ad14bit) {SpeedRawValue = ad14bit};
-             k = DecOutLong(pciad_addr + 4, SpeedRawValue);
-        }
-
-            
-}//namespace closing bracket
->>>>>>> 7d2dda1... almost end of the week, almost finished first test with classes

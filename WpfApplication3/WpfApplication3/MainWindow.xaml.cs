@@ -30,25 +30,9 @@ namespace WpfApplication3
         public MainWindow()
         {
             InitializeComponent();
-<<<<<<< HEAD
             _m2 = new DeltaMotor();
             _m2.Card.Set8255();
             _m2.Card.Set8253();
-=======
-
-            DeltaMotor M2 = new DeltaMotor();
-            M2.Card.Set8255();
-            M2.Card.Set8253();
-
-            M2.Stop();
-
-            M2.Card.checkAddresses();
-
-
-
-        }
-
->>>>>>> 7d2dda1... almost end of the week, almost finished first test with classes
 
             _m2.Stop();
 
