@@ -65,7 +65,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="PinBaoCard.cs" />
+    <Compile Include="StepMotor.cs" />
+    <Compile Include="PTTReader.cs" />
     <Compile Include="DeltaMotor.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
