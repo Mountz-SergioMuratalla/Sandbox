@@ -15,8 +15,11 @@
                 <TranslateTransform/>
             </TransformGroup>
         </Grid.RenderTransform>
-        <Button Content="Run CW" HorizontalAlignment="Left" Margin="100,191,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button x:Name="RunCWBtn" HorizontalAlignment="Left" Margin="39,181,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click">
+            <ListBox Height="100" Width="100" SelectionChanged="ListBox_SelectionChanged"/>
+        </Button>
         <TextBox x:Name="StatusTextBox" HorizontalAlignment="Left" Height="130" Margin="79,29,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="114"/>
+        <Button x:Name="StopBtn" Content="Stop" HorizontalAlignment="Left" Height="22" Margin="158,181,0,0" VerticalAlignment="Top" Width="77" Click="Button_Click_1"/>
 
     </Grid>
 </Window>

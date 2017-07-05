@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
 namespace WpfApplication3
 {
-    class DeltaMotor
+    internal class DeltaMotor
     {
         public PinBaoCard Card = new PinBaoCard();//creates an instance of the card to comunicate with
 
 
-        private int cnt0_back, cnt1_back, cnt0_now, cnt1_now, count0, count1-0; //variables for angle counting
+        private int cnt0_back, cnt1_back, cnt0_now, cnt1_now, count0, count1; //variables for angle counting
         private double origin, COUNTER, an, ab, angle360 = 0;
         private double votage_cal = 1;    //direction? -1 for small machines, 1 for bigger MTTMs
         private double test_speed = 0.5;  //main speed
         private double ad13bit = 2048;   //bin 0100000000000        this number starts at digit 12      MURA
         private double ad14bit = 4095;   //bin 0111111111111                                            MURA
         private double motor_speed_max = 3000;        //CHECKIFUSED
-       private double slower = 630.8;   //factor used to calculate the actual signal to be sent for the speed   CHECKIFUSED
+        private double slower = 630.8;   //factor used to calculate the actual signal to be sent for the speed   CHECKIFUSED
         private double originsum = 0;
         private double preset_origin = 0;
         private double encoder = 6308;
@@ -27,12 +28,14 @@ namespace WpfApplication3
         //private double angle360 = 161.71
         private int MTTMDirection = 1;   // CHeCKIFUSED
 
-        public void Stop() {
+        public void Stop()
+        {
             Card.Stop();
             return;
         }
 
-        public void Move(double RPMspeed) {
+        public void Move(double RPMspeed)
+        {
             Card.ActivateMotor();
             double rawSpeed = ad13bit + ((RPMspeed * ad13bit * votage_cal) / (motor_speed_max / 630.8));
             Card.MoveCommand((int)rawSpeed);
@@ -55,15 +58,14 @@ namespace WpfApplication3
             ab = 0;
             angle360 = 0;
         }
-
     }
 
     //class AngleControler(){
-        //}
+    //}
 
-   
 
-        public   class PinBaoCard
+
+    public class PinBaoCard
     {
 
         /// /////////////////////////////////////////////////////////////
@@ -103,8 +105,8 @@ namespace WpfApplication3
         //private static extern char Inp32(short PortAddress);
         /// </summary>
 
-        private byte i;
-        private int j, k;
+        private byte i,j;
+        private int k;
 
         private const int DECISION_PCI_IND_CARD = 1;
         private const int DECISION_PCI_8255_CARD = 2;
@@ -128,8 +130,9 @@ namespace WpfApplication3
         private static int ad13bit = 2048;   //'bin 0100000000000        this number starts at digit 12      MURA
         private static int ad14bit = 4095;  // 'bin 0111111111111                                            MURA
 
-        public void CheckAddresses() {
-            System.Windows.MessageBox.Show("ad_addr: " + ad_addr + "\n" + "io_addr: " + ad_addr + "  and should should be 57344 \n" + "pciad_addr: " + pciad_addr + "\n" + );
+        public void CheckAddresses()
+        {
+            System.Windows.MessageBox.Show("ad_addr: " + ad_addr + "\n" + "io_addr: " + ad_addr + "  and should should be 57344 \n" + "pciad_addr: " + pciad_addr + "\n");
         }
 
 
@@ -159,7 +162,8 @@ namespace WpfApplication3
         //public static int k1 = DecOutb(P2CTRL, 0x9B);
         //public static int k2 = DecOutb(P1A, 0xFF);
         //public static int k3 = DecOutb(P1A, 0x0);
-        public void Set8255() {
+        public void Set8255()
+        {
             k = DecOutb(P1CTRL, 0x8B);
             k = DecOutb(P2CTRL, 0x9B);
             k = DecOutb(P1A, 0xFF);
@@ -175,7 +179,8 @@ namespace WpfApplication3
         //private static int k7 = DecOutb(CNT0, i), k8 = DecOutb(CNT0, j);
         //private static byte i1 = DecInpb(CNT1), j1 = DecInpb(CNT1);
         //private static int k9 = DecOutb(CNT1, i1), k10 = DecOutb(CNT1, j1);
-        public void Set8253() {
+        public void Set8253()
+        {
             k = DecOutb(CNT_CTRL, 0x30);
             k = DecOutb(CNT_CTRL, 0x70);
             k = DecOutb(CNT_CTRL, 0xB0);
@@ -194,7 +199,8 @@ namespace WpfApplication3
         //stop lamp
         //private static byte i3 = DecInpb(P1A);
         //private static int k11 = DecOutb(P1A, (byte)(i3 | STOP_SPEED));//'STOP_SPEED=&H8
-        public void Stop() {
+        public void Stop()
+        {
             i = DecInpb(P1A);
             DecOutb(P1A, (byte)(i | STOP_SPEED));//'STOP_SPEED=&H8
             return;
@@ -214,7 +220,8 @@ namespace WpfApplication3
 
         public int ReadAddress(string a)
         {
-            switch (a) {
+            switch (a)
+            {
                 case "CNT0":
                     return DecInpb(CNT0);
 
@@ -222,14 +229,14 @@ namespace WpfApplication3
             }
         }
 
-        public byte Resetcnt0_back() {
+        public byte Resetcnt0_back()
+        {
             byte cnt0back;
             k = DecOutb(CNT_CTRL, 0x0); //0000 0000
             cnt0back = DecInpb(CNT0);
             //cnt0back = cnt0back + (DecInpb(CNT0) << 8); check just in case this might be missing, find a way to implement it
             return cnt0back;
         }
-
 
         public byte Resetcnt1_back()
         {
@@ -242,15 +249,17 @@ namespace WpfApplication3
 
         public void ActivateMotor()
         {
-             i= DecInpb(P1A);
-             k = DecOutb(P1A, (byte)(i & ZERO_SPEED));  //  ZERO_SPEED=&HF7=11110111
+            i = DecInpb(P1A);
+            k = DecOutb(P1A, (byte)(i & ZERO_SPEED));  //  ZERO_SPEED=&HF7=11110111
         }
 
         public void MoveCommand(int SpeedRawValue)
-        {     
-             if (SpeedRawValue >= ad14bit) {SpeedRawValue = ad14bit};
-             k = DecOutLong(pciad_addr + 4, SpeedRawValue);
+        {
+            if (SpeedRawValue >= ad14bit) { SpeedRawValue = ad14bit; };
+            k = DecOutLong(pciad_addr + 4, SpeedRawValue);
         }
 
-            
-}//namespace closing bracket
+
+    }//namespace closing bracket
+
+}//End of namespace
