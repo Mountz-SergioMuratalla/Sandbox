@@ -22,8 +22,8 @@ namespace Trois
         [DllImport("deltamovectrl.dll", CharSet = CharSet.Auto, EntryPoint = "Reset8253", ExactSpelling = false, CallingConvention = CallingConvention.StdCall)]
         private static extern void _Reset8253();
 
-        public void Set(int cardmodel) {
-            _Set(cardmodel);
+        public void Set(int model) {
+            _Set(model);
             return;
         }
 
