@@ -25,8 +25,8 @@ namespace Trois
 
     public partial class MainWindow : Window
     {
-        private DeltaMotor _m2;
-        private DeltaMotordll _m2dll;
+        //private DeltaMotor _m2;
+        private DeltaMotordll _m2dll= new DeltaMotordll();
 
         public MainWindow()
         {
@@ -38,8 +38,10 @@ namespace Trois
             //_m2.Stop();
 
             //_m2.Card.CheckAddresses();
+ 
+            _m2dll.Set(8255);
+            _m2dll.Set(8253);
 
-            _m2dll.Set(0);
             _m2dll.Stop();
            
 
