@@ -57,6 +57,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DeltaMotorLibrary">
+      <HintPath>..\..\..\Libraries\Delta\DeltaMotorLibrary\DeltaMotorLibrary\bin\Debug\netstandard1.4\DeltaMotorLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="deltamovectrl">
       <HintPath>..\..\deltamovectrl\deltamovectrl\bin\Debug\netstandard1.4\deltamovectrl.dll</HintPath>
     </Reference>
@@ -88,10 +91,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DeltaMotordll.cs" />
     <Compile Include="StepMotor.cs" />
     <Compile Include="PTTReader.cs" />
-    <Compile Include="DeltaMotor.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

@@ -12,7 +12,7 @@ namespace deltamovectrl
     public class DeltaMotor
     {
         internal PinBaoCard Card = new PinBaoCard();//creates an instance of the card to comunicate with
-
+        //delete this comment
         private int cnt0_back, cnt1_back, cnt0_now, cnt1_now, count0, count1; //variables for angle counting
         private double origin, COUNTER, an, ab, angle360 = 0;
         private double votage_cal = 1;    //direction? -1 for small machines, 1 for bigger MTTMs

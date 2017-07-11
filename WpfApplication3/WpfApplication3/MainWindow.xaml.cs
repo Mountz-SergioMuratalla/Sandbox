@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using deltamovectrl;
+using DeltaMotorLibrary;
 using System.Runtime.InteropServices;
 
 namespace Trois
@@ -25,58 +26,27 @@ namespace Trois
 
     public partial class MainWindow : Window
     {
-        //private DeltaMotor _m2;
-        private DeltaMotordll _m2dll= new DeltaMotordll();
+        private DeltaMotorLibrary.DeltaMotorControl _m2dll= new DeltaMotorLibrary.DeltaMotorControl();
 
         public MainWindow()
         {
             InitializeComponent();
-            //_m2 = new DeltaMotor();
-            //_m2.Card.Set8255();
-            //_m2.Card.Set8253();
 
-            //_m2.Stop();
-
-            //_m2.Card.CheckAddresses();
  
-            _m2dll.Set(8255);
-            _m2dll.Set(8253);
-
+            _m2dll.CardSet(8255);
+            _m2dll.CardSet(8253);
             _m2dll.Stop();
-           
-
-
-
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-           // _m2.Move(1);
-
-
             _m2dll.Move(1);
 
-
-            //int DATA;
-            //int pciad_addr = -7936;
-            //DATA = 2600;
-
-            //byte i = DecInpb(P1A);         //   'saves whatever is already in the port
-            //int k1 = DecOutLong(P1A, (i & ZERO_SPEED));
-            ////int b = (i & ZERO_SPEED);
-            //System.Windows.MessageBox.Show(b.ToString());
-
-            //int k2= DecOutLong(pciad_addr + 4, DATA);
-            //this.StatusTextBox.Text = k1.ToString() + " " + k2.ToString()+ " "+(pciad_addr+4).ToString()+ " " + DATA.ToString();
-
-        }
+         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            //_m2.Stop();
-
 
             _m2dll.Stop();
         }
